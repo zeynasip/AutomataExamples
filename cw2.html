@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>NFA and DFA for (1|0)*00 </title>
+</head>
+
+<body>
+
+<h2 id=title></h2>
+
+<h id=title2></h>
+
+<pre id=out></pre>
+
+<hr />
+
+<style>
+    table { 
+        border-collapse: collapse; 
+        margin: 0 50px; 
+    }
+    th { 
+        color: blue; 
+        padding: 5px 12px; 
+    }
+    td { 
+        border: 1px solid blue; 
+        padding: 5px 12px; 
+        text-align: center; 
+    }
+</style>
+
+<br>
+<b>DFA Table</b>
+<table>
+<tr><th></th><th>0</th><th>1</th></tr>
+<tr><th>> a</th><td>b</td><td>a</td></tr>
+<tr><th>&emsp;b</th><td>c</td><td>a</td></tr>
+<tr><th>* c</th><td>c</td><td>a</td></tr>
+</table>
+
+<br><br>
+<b>NFA Table</b>
+<table>
+<tr><th></th><th>0</th><th>1</th></tr>
+<tr><th>> a</th><td>ab</td><td>a</td></tr>
+<tr><th>&emsp;b</th><td>c</td><td>ϕ</td></tr>
+<tr><th>* c</th><td>ϕ</td><td>ϕ</td></tr>
+</table>
+<br><br>
+
+<hr />
+
+<pre id=sample></pre>
+
+<script>
+"use strict";
+let arr = []
+for(let i = 0; i < 50; i++){
+    arr.push(i)
+}
+function union(a, b) { //set operation using strings
+    let s = a
+    for (let x of b) if (!a.includes(x)) s += x
+    return s
+}
+function intersect(a, b) {
+    let s = ''
+    for (let x of b) if (a.includes(x)) s += x
+    return s
+}
+function deltaDFA(q, c) { // (1|0)*00
+    if (q=='a' && c=='0') return 'b'
+    if (q=='b' && c=='0') return 'c' 
+    if (q=='c' && c=='0') return 'c' 
+    if (c=='1') return 'a'
+    return '';  //default -- no transition
+}
+function deltaNFA(q, c) { // (1|0)*00
+    if (q=='a' && c=='0') return 'ab'
+    if (q=='a' && c=='1') return 'a'
+    if (q=='b' && c=='0') return 'c'
+    return '';  //default -- no transition
+}
+function acceptDFA(arr, F = 'c', q ='a') {
+    //w: binary string
+    //F: final state(s)
+    //q: current state
+    let arrDFA = [] 
+    let w = ""
+    for(let j = 0; j < 50; j++){
+		w = arr[j].toString(2)
+		let i = 0
+		while (i < w.length) {
+			q = deltaDFA(q, w[i])
+			if (q == '') break
+			i++
+		}
+		if(intersect(q, F).length > 0){
+			arrDFA.push(arr[j]) 	
+		}
+    }
+    return arrDFA
+}
+function acceptNFA(arr, F = 'c', Q ='a') {
+    //w: input String
+    //F: final state(s)
+    //Q: current state(s)
+    let arrNFA = []
+    let w = ""
+    for(let j = 0; j < 50; j++){
+		w = arr[j].toString(2)
+		let i = 0, T=''
+		while (i < w.length) {
+			let c = w[i], T=''
+			for (let z of Q) 
+				T = union(T, deltaNFA(z, c))
+			Q = T
+			if (Q == '') break
+			i++; 
+		}
+		if(intersect(Q, F).length > 0){
+			arrNFA.push(arr[j]) 	
+		}
+	}
+    return arrNFA
+}
+function regExp(arr) {
+	let arrRegex = []
+    let w = ""
+	for(let j = 0; j < 50; j++){
+		w = arr[j].toString(2)
+		let e = /00$/
+		if(e.test(w)){
+			arrRegex.push(arr[j]) 	
+		}
+	}
+	return arrRegex
+}
+function test() {
+    let s = accept(input.value, final.value);
+    console.log(s);  out.innerHTML = s
+}
+    title.innerText = document.title;
+    //title2.innerText = "The binary string of 48 -> " + w;
+    sample.innerText = deltaDFA + '\n\n' + deltaNFA;
+    out.innerText = "The DFA Result : " + acceptDFA(arr) + "\n" + "The NFA Result : " + acceptNFA(arr) + "\n" + "The RegExp Result : " + regExp(arr);
+</script>
+</body>
+</html>
