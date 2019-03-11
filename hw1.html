@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width=device-width">
+    <title>Homework 1</title>
+
+<style>
+    .found1{ color: blue;}
+    .found2{ color: red;}
+</style>
+
+</head>
+
+<body>
+
+<h2 id = title></h2>
+
+<p><textarea type = "text" style = "width: 300px; height: 100px" id = inp onKeyUp = "check()"></textarea></p>
+
+<hr/>
+
+<p id = out></p>
+
+<script>
+"use strict";
+const word = ['"bir iki üç dört beş altı"', "[1,2,3,4,5,6]",
+              "[bir, 'iki', üç, dört, beş, altı]", "'1 2 3 4 5 6'"];
+for(let i = 0; i < 4; i++){
+    inp.value += word[i];
+    inp.value += "\n";
+}
+function check(){
+    const exp1 = /(\"|\').*(\"|\')/g;
+    const str1 = "<span class = found1>$&</span>";
+    const exp2 = /\[(.*)?\]/g; 
+    const str2 = "<span class = found2>$&</span>"; 
+    let n = inp.value.replace(exp1, str1);
+    out.innerHTML = n.replace(exp2, str2).split("\n").join("<br>")
+}
+    title.innerText = document.title;
+    check();
+</script>
+
+</body>
+</html>
