@@ -5,4 +5,4 @@
 
 . [HW1](https://zeynasip.github.io/AutomataExamples/hw1.html)
 
-. [CW5](https://zeynasip.github.io/AutomataExamples/hw1.html)
+. [CW5](https://zeynasip.github.io/AutomataExamples/Expression.html)
