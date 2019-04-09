@@ -6,3 +6,5 @@
 . [HW1](https://zeynasip.github.io/AutomataExamples/hw1.html)
 
 . [CW5](https://zeynasip.github.io/AutomataExamples/Expression.html)
+
+. [CW6](https://zeynasip.github.io/AutomataExamples/pda.html)
