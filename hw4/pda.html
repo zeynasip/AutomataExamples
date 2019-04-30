@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+<head>
+	<meta charset = "UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+	<script src = "pda.js"></script>
+    <title>Zeynep NASİP</title>
+<style>
+	* {
+	  box-sizing: border-box;
+	}
+	body{
+		background: #FFF8DC;
+	}
+	.baslik{
+		background-color: #FFA07A;
+		padding: 8px;
+		text-align: center;
+		color: #FFF8DC;
+		font-family: "ITC Serif Gothicv", Lato;
+		font-size: 2em;
+		letter-spacing: 0.1em;
+	}
+</style>
+</head>
+<body>
+	<div class = "baslik">PUSH-DOWN AUTOMATA</div>
+	<center>
+	<p>Gerekli bilgiler buraya gelecek.</p>
+	</center>
+	P = ( Q, Σ, Γ, δ, q0, Z0, F)<br>
+		
+		Q : set of states<br>
+		Σ : alphabet<br>
+		Γ : stack alphabet<br> -
+		δ : transition function<br> -
+		q0 : start state<br>
+		Z0 : start symbol<br> -
+		F : set of final states
+	<hr>
+	<table id = "tbl" border = "0" bordercolor = "black">
+		<tr>
+			<td><b>Rules</b></td>
+			<td><b>Components</b></td>
+		<tr>
+			<td width = "200px">E → TX</td>
+			<td width = "200px">q0 = { E }</td></tr>
+		<tr>
+			<td width = "200px">X → ε | +TX | -TX</td>
+			<td width = "200px">Q  = { E, X, T, Y, F }</td></tr>
+		<tr>
+			<td width = "200px">T → FY</td>
+			<td width = "200px">Σ  = { +, -, *, /, n, (, ) }</td></tr>
+		<tr>
+			<td width = "200px">Y → ε | *FY | /FY</td>
+			<td width = "200px">F  = { F }</td></tr>
+		<tr>
+			<td width = "200px">F → n | (E)</td></tr>
+	</table><br>
+	<hr>
+	<b>Write An Example&emsp;<input id = "input" value = "+*n" type = text style = "width: 120px"></b>&emsp;
+	<input type = "button" id = "addEx" value = "Run" onclick = "test()"></input><br>
+	<hr>
+	<h3>Yield Representation</h3>
+	<pre id = out></pre>
+	<hr>
+	<h3>Parse Tree</h3>
+	
+	
+	
+</body>
+</html>
