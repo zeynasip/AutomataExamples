@@ -3,7 +3,6 @@
 <head>
 	<meta charset = "UTF-8">
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-	<script src = "pda.js"></script>
     <title>Zeynep NASİP</title>
 <style>
 	* {
@@ -21,24 +20,40 @@
 		font-size: 2em;
 		letter-spacing: 0.1em;
 	}
+	#sides {
+        margin: 0;
+        font-size: 15px;
+    }
+    #left {
+        float: left;
+        width: 45%;
+        overflow: hidden;
+    }
+    #right1 {
+        height: 200px;
+        float: left;
+        width: 35%;
+        overflow: hidden;
+    }
 </style>
 </head>
 <body>
-	<div class = "baslik">PUSH-DOWN AUTOMATA</div>
+	<div class = "baslik">PUSH-DOWN AUTOMATA</div><br> 
 	<center>
-	<p>Gerekli bilgiler buraya gelecek.</p>
-	</center>
-	P = ( Q, Σ, Γ, δ, q0, Z0, F)<br>
-		
+	<p>Pushdown Automata is a finite automata with extra memory called stack 
+	which helps Pushdown automata to recognize Context Free Languages.</p><br>
+	<img src = "pushdown.jpg"><br> 
+		<br>A Pushdown Automata (PDA) can be defined as:<br>
+		P = ( Q, Σ, Γ, δ, q0, Z0, F)<br>
 		Q : set of states<br>
 		Σ : alphabet<br>
-		Γ : stack alphabet<br> -
-		δ : transition function<br> -
+		Γ : stack alphabet<br> 
+		δ : transition function<br> 
 		q0 : start state<br>
-		Z0 : start symbol<br> -
+		Z0 : start symbol<br> 
 		F : set of final states
 	<hr>
-	<table id = "tbl" border = "0" bordercolor = "black">
+	<br><table id = "tbl" border = "0" style = "bordercolor: black;">
 		<tr>
 			<td><b>Rules</b></td>
 			<td><b>Components</b></td>
@@ -56,17 +71,270 @@
 			<td width = "200px">F  = { F }</td></tr>
 		<tr>
 			<td width = "200px">F → n | (E)</td></tr>
-	</table><br>
-	<hr>
-	<b>Write An Example&emsp;<input id = "input" value = "+*n" type = text style = "width: 120px"></b>&emsp;
-	<input type = "button" id = "addEx" value = "Run" onclick = "test()"></input><br>
-	<hr>
-	<h3>Yield Representation</h3>
-	<pre id = out></pre>
-	<hr>
-	<h3>Parse Tree</h3>
-	
-	
-	
+	</table><br><br>
+	<input id = "inp" value = "n/n+n*n" style = "width: 130px; height: 25px;">
+	<select id = "down" style = "width: 130px; height: 25px;">
+		<option value = "n/n+n*n">Accepted Sample</option>
+		<option value = "n+nn-n">Rejected Sample</option>
+	</select>
+	<input type = "button" id = "addEx" value = "Run" onclick = "run()"></input>
+	<input type = "button" name = "tree" onclick = "next()" value = "Next Step"></input><br><br>
+	<div id = "sides">
+		<div id = "left">
+			<h3>Yield Representation</h3>
+			<pre id = "out"></pre>
+		</div>
+		<h3>Parse Tree</h3>
+		<img id = "right1"></img>
+	</div>
+	</center>
+	<script>
+		let i = 1;
+		let txt = "";
+		let w;
+		let textbox = document.getElementById('inp');
+		let dropdown = document.getElementById('down');
+		dropdown.onchange = function(){
+			textbox.value = this.value;
+			w = textbox.value;
+		};
+		function run(){
+			next();
+		}
+		function next(){
+			if(w == "n/n+n*n"){
+				console.log("girdi")
+				while(i <= 21){
+					let txtFunc = "func" + i;
+					window[txtFunc]();
+					break;
+				}
+			}
+			else{ 
+				while(i <= 13){
+					let txtFunc = "funcR" + i;
+					window[txtFunc]();
+					break;
+				}
+			}
+		}
+		function func1(){
+			i++;
+			txt += "P = (" + w + " , E)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a1.png";
+		}
+		function func2(){
+			i++;
+			txt += "\n⊢ (" + w + " , TX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a2.png";
+		}
+		function func3(){
+			i++;
+			txt += "\n⊢ (" + w + " , FYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a3.png";
+		}
+		function func4(){
+			i++;
+			txt += "\n⊢ (" + w + " , nYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a4.png";
+		}
+		function func5(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , YX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a4.png";
+		}
+		function func6(){
+			i++;
+			txt += "\n⊢ (" + w + " , /FYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a5.png";
+		}
+		function func7(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , FYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a5.png";
+		}
+		function func8(){
+			i++;
+			txt += "\n⊢ (" + w + " , nYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a6.png";
+		}
+		function func9(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , YX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a6.png";
+		}
+		function func10(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , X)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a7.png";
+		}
+		function func11(){
+			i++;
+			txt += "\n⊢ (" + w + " , +TX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a8.png";
+		}
+		function func12(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , TX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a8.png";
+		}
+		function func13(){
+			i++;
+			txt += "\n⊢ (" + w + " , FYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a9.png";
+		}
+		function func14(){
+			i++;
+			txt += "\n⊢ (" + w + " , nYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a10.png";
+		}
+		function func15(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , YX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a10.png";
+		}
+		function func16(){
+			i++;
+			txt += "\n⊢ (" + w + " , *FYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a11.png";
+		}
+		function func17(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , FYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a11.png";
+		}
+		function func18(){
+			i++;
+			txt += "\n⊢ (" + w + " , nYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a12.png";
+		}
+		function func19(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , YX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a12.png";
+		}
+		function func20(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , X)";
+			document.images["right1"].src = "a13.png";
+		}
+		function func21(){
+			i++;
+			txt += "\n⊢ (ε , ε)\nAccepted";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a13.png";
+		}
+		function funcR1(){
+			i++;
+			txt += "P = (" + w + " , E)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a1.png";
+		}
+		function funcR2(){
+			i++;
+			txt += "\n⊢ (" + w + " , TX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a2.png";
+		}
+		function funcR3(){
+			i++;
+			txt += "\n⊢ (" + w + " , FYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a3.png";
+		}
+		function funcR4(){
+			i++;
+			txt += "\n⊢ (" + w + " , nYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a4.png";
+		}
+		function funcR5(){
+			i++;
+			//w = w.substr(1);
+			console.log(w)
+			txt += "\n⊢ (" + w + " , YX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "a4.png";
+		}
+		function funcR6(){
+			i++;
+			txt += "\n⊢ (" + w + " , X)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "r5.png";
+		}
+		function funcR7(){
+			i++;
+			txt += "\n⊢ (" + w + " , +TX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "r6.png";
+		}
+		function funcR8(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , TX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "r6.png";
+		}
+		function funcR9(){
+			i++;
+			txt += "\n⊢ (" + w + " , FYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "r7.png";
+		}
+		function funcR10(){
+			i++;
+			txt += "\n⊢ (" + w + " , nYX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "r8.png";
+		}
+		function funcR11(){
+			i++;
+			//w = w.substr(1);
+			txt += "\n⊢ (" + w + " , YX)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "r8.png";
+		}
+		function funcR12(){
+			i++;
+			txt += "\n⊢ (" + w + " , X)";
+			out.innerHTML = txt;
+			document.images["right1"].src = "r9.png";
+		}
+		function funcR13(){
+			i++;
+			txt += "\n⊢ (" + w + " , X)";
+			txt += "\nThere is no X value that brings 'n'.\nSo the example is rejected!";
+			out.innerHTML = txt;
+			document.images["right1"].src = "r9.png";
+		}
+	</script>
 </body>
 </html>
