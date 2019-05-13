@@ -2,47 +2,57 @@
 <html lang = "en-US">
 <head>
 	<meta charset = "UTF-8">
-    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Zeynep NASİP</title>
-<style>
-	* {
-	  box-sizing: border-box;
-	}
-	body{
-		background: #FFF8DC;
-	}
-	.baslik{
-		background-color: #FFA07A;
-		padding: 8px;
-		text-align: center;
-		color: #FFF8DC;
-		font-family: "ITC Serif Gothicv", Lato;
-		font-size: 2em;
-		letter-spacing: 0.1em;
-	}
-	#sides {
-        margin: 0;
-        font-size: 15px;
-    }
-    #left {
-        float: left;
-        width: 45%;
-        overflow: hidden;
-    }
-    #right1 {
-        height: 200px;
-        float: left;
-        width: 35%;
-        overflow: hidden;
-    }
-</style>
+	<script src = "https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js"></script>
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+		.baslik{
+			background-color: #FFA07A;
+			padding: 8px;
+			text-align: center;
+			color: #FFF8DC;
+			font-family: "ITC Serif Gothicv", Lato;
+			font-size: 2em;
+			letter-spacing: 0.1em;
+		}
+	</style>
 </head>
 <body>
-	<div class = "baslik">PUSH-DOWN AUTOMATA</div><br> 
-	<center>
-	<p>Pushdown Automata is a finite automata with extra memory called stack 
-	which helps Pushdown automata to recognize Context Free Languages.</p><br>
-	<img src = "pushdown.jpg"><br> 
+	<header class = "w3-display-container w3-content w3-center" style = "max-width:800px">
+		<img class = "w3-image" src = "grey.png" width = "500" height = "500">
+		<div class = "w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+			<h1 class = "w3-hide-medium w3-hide-small w3-xxxlarge">PUSH-DOWN AUTOMATA</h1>
+		</div>
+		<div class = "w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style = "bottom:-16px">
+			<a href = "#" class = "w3-bar-item w3-button">Home</a>
+			<a href = "#portfolio" class = "w3-bar-item w3-button">What Is PDA?</a>
+			<a href = "#contact" class = "w3-bar-item w3-button">Examples</a>
+		</div>
+	</header>
+	<div class = "w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+		<div class = "w3-bar w3-light-grey">
+		  <a href = "#" class = "w3-bar-item w3-button">Home</a>
+		  <a href = "#portfolio" class = "w3-bar-item w3-button">What Is PDA?</a>
+		  <a href = "#contact" class = "w3-bar-item w3-button">Contact</a>
+		</div>
+	</div>
+	<div class = "w3-content w3-padding-large w3-margin-top" id = "portfolio">
+		<p>Pushdown Automata is a finite automata with extra memory called stack which helps Pushdown automata to recognize Context Free Languages.<br>
+		A finite state machine just looks at the input signal and the current state: it has no stack to work with. <br>
+		It chooses a new state, the result of following the transition. <br>
+		A pushdown automaton (PDA) differs from a finite state machine in two ways:<br>
+		1)It can use the top of the stack to decide which transition to take.<br>
+		2)It can manipulate the stack as part of performing a transition.<br>
+		A pushdown automaton reads a given input string from left to right. <br>
+		In each step, it chooses a transition by indexing a table by input symbol, current state, and the symbol at the top of the stack. <br>
+		A pushdown automaton can also manipulate the stack, as part of performing a transition. <br>
+		The manipulation can be to push a particular symbol to the top of the stack, or to pop off the top of the stack. <br>
+		The automaton can alternatively ignore the stack, and leave it as it is.</p><br>
+		<center><img src = "pushdown.jpg"></center><br> 
 		<br>A Pushdown Automata (PDA) can be defined as:<br>
 		P = ( Q, Σ, Γ, δ, q0, Z0, F)<br>
 		Q : set of states<br>
@@ -52,42 +62,44 @@
 		q0 : start state<br>
 		Z0 : start symbol<br> 
 		F : set of final states
-	<hr>
-	<br><table id = "tbl" border = "0" style = "bordercolor: black;">
-		<tr>
-			<td><b>Rules</b></td>
-			<td><b>Components</b></td>
-		<tr>
-			<td width = "200px">E → TX</td>
-			<td width = "200px">q0 = { E }</td></tr>
-		<tr>
-			<td width = "200px">X → ε | +TX | -TX</td>
-			<td width = "200px">Q  = { E, X, T, Y, F }</td></tr>
-		<tr>
-			<td width = "200px">T → FY</td>
-			<td width = "200px">Σ  = { +, -, *, /, n, (, ) }</td></tr>
-		<tr>
-			<td width = "200px">Y → ε | *FY | /FY</td>
-			<td width = "200px">F  = { F }</td></tr>
-		<tr>
-			<td width = "200px">F → n | (E)</td></tr>
-	</table><br><br>
-	<input id = "inp" value = "n/n+n*n" style = "width: 130px; height: 25px;">
-	<select id = "down" style = "width: 130px; height: 25px;">
-		<option value = "n/n+n*n">Accepted Sample</option>
-		<option value = "n+nn-n">Rejected Sample</option>
-	</select>
-	<input type = "button" id = "addEx" value = "Run" onclick = "run()"></input>
-	<input type = "button" name = "tree" onclick = "next()" value = "Next Step"></input><br><br>
-	<div id = "sides">
-		<div id = "left">
+		<div class = "w3-light-grey w3-padding-large w3-padding-32 w3-margin-top" id = "contact">
+			<h3 class = "w3-center">Examples</h3>
+			<hr>
+			<table id = "tbl" border = "0" style = "bordercolor: black;">
+				<tr>
+					<td><b>Rules</b></td>
+					<td><b>Components</b></td>
+				<tr>
+					<td width = "200px">E → TX</td>
+					<td width = "200px">q0 = { E }</td></tr>
+				<tr>
+					<td width = "200px">X → ε | +TX | -TX</td>
+					<td width = "200px">Q  = { E, X, T, Y, F }</td></tr>
+				<tr>
+					<td width = "200px">T → FY</td>
+					<td width = "200px">Σ  = { +, -, *, /, n, (, ) }</td></tr>
+				<tr>
+					<td width = "200px">Y → ε | *FY | /FY</td>
+					<td width = "200px">F  = { F }</td></tr>
+				<tr>
+					<td width = "200px">F → n | (E)</td></tr>
+			</table><br>
+			<input id = "inp" value = "n/n+n*n" style = "width: 130px; height: 25px;">
+			<select id = "down" style = "width: 160px; height: 25px;">
+				<option value = "n/n+n*n">Accepted Sample</option>
+				<option value = "n+nn-n">Rejected Sample</option>
+			</select>
+			<input href = "#left" type = "button" id = "addEx" value = "Run" onclick = "run()"></input>
+			<input href = "#left" type = "button" name = "tree" onclick = "next()" value = "Next Step"></input><br><br>
 			<h3>Yield Representation</h3>
-			<pre id = "out"></pre>
-		</div>
-		<h3>Parse Tree</h3>
-		<img id = "right1"></img>
+			<pre id = "out"></pre><br>
+			<h3>Parse Tree</h3>
+			<img id = "right1"></img>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<p>Powered by <a href = "https://www.w3schools.com/w3css/default.asp" target = "_blank" class="w3-hover-text-green">w3.css</a></p>
+			<p>References <a href = "http://www.wikizero.biz/index.php?q=aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUHVzaGRvd25fYXV0b21hdG9u" target = "_blank" class="w3-hover-text-green">Wikipedia</a></p>
+			<p>This page is made by Zeynep NASİP <a href = "https://zeynasip.github.io/AutomataExamples/" target = "_blank" class="w3-hover-text-green">My Github Page</a></p>
 	</div>
-	</center>
 	<script>
 		let i = 1;
 		let txt = "";
@@ -96,15 +108,14 @@
 		let dropdown = document.getElementById('down');
 		dropdown.onchange = function(){
 			textbox.value = this.value;
-			w = textbox.value;
 		};
 		function run(){
 			next();
 		}
 		function next(){
+			w = textbox.value;
 			if(w == "n/n+n*n"){
-				console.log("girdi")
-				while(i <= 21){
+				while(i <= 23){
 					let txtFunc = "func" + i;
 					window[txtFunc]();
 					break;
@@ -120,220 +131,219 @@
 		}
 		function func1(){
 			i++;
-			txt += "P = (" + w + " , E)";
+			txt += "P = (n/n+n*n , E)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a1.png";
+			document.images["right1"].src = "accepted1.png";
 		}
 		function func2(){
 			i++;
-			txt += "\n⊢ (" + w + " , TX)";
+			txt += " ⊢ (n/n+n*n , TX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a2.png";
+			document.images["right1"].src = "accepted2.png";
 		}
 		function func3(){
 			i++;
-			txt += "\n⊢ (" + w + " , FYX)";
+			txt += " ⊢ (n/n+n*n , FYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a3.png";
+			document.images["right1"].src = "accepted3.png";
 		}
 		function func4(){
 			i++;
-			txt += "\n⊢ (" + w + " , nYX)";
+			txt += " ⊢ (n/n+n*n , nYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a4.png";
+			document.images["right1"].src = "accepted4.png";
 		}
 		function func5(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , YX)";
+			txt += " ⊢ (/n+n*n , YX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a4.png";
+			document.images["right1"].src = "accepted4.png";
 		}
 		function func6(){
 			i++;
-			txt += "\n⊢ (" + w + " , /FYX)";
+			txt += " ⊢ (/n+n*n , /FYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a5.png";
+			document.images["right1"].src = "accepted5.png";
 		}
 		function func7(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , FYX)";
+			txt += "\n⊢ (n+n*n , FYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a5.png";
+			document.images["right1"].src = "accepted5.png";
 		}
 		function func8(){
 			i++;
-			txt += "\n⊢ (" + w + " , nYX)";
+			txt += " ⊢ (n+n*n , nYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a6.png";
+			document.images["right1"].src = "accepted6.png";
 		}
 		function func9(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , YX)";
+			txt += " ⊢ (+n*n , YX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a6.png";
+			document.images["right1"].src = "accepted6.png";
 		}
 		function func10(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , X)";
+			txt += " ⊢ (+n*n , X)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a7.png";
+			document.images["right1"].src = "accepted7.png";
 		}
 		function func11(){
 			i++;
-			txt += "\n⊢ (" + w + " , +TX)";
+			txt += " ⊢ (+n*n , +TX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a8.png";
+			document.images["right1"].src = "accepted8.png";
 		}
 		function func12(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , TX)";
+			txt += " ⊢ (n*n , TX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a8.png";
+			document.images["right1"].src = "accepted8.png";
 		}
 		function func13(){
 			i++;
-			txt += "\n⊢ (" + w + " , FYX)";
+			txt += " ⊢ (n*n , FYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a9.png";
+			document.images["right1"].src = "accepted9.png";
 		}
 		function func14(){
 			i++;
-			txt += "\n⊢ (" + w + " , nYX)";
+			txt += "\n⊢ (n*n , nYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a10.png";
+			document.images["right1"].src = "accepted10.png";
 		}
 		function func15(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , YX)";
+			txt += " ⊢ (*n , YX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a10.png";
+			document.images["right1"].src = "accepted10.png";
 		}
 		function func16(){
 			i++;
-			txt += "\n⊢ (" + w + " , *FYX)";
+			txt += " ⊢ (*n , *FYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a11.png";
+			document.images["right1"].src = "accepted11.png";
 		}
 		function func17(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , FYX)";
+			txt += " ⊢ (n , FYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a11.png";
+			document.images["right1"].src = "accepted11.png";
 		}
 		function func18(){
 			i++;
-			txt += "\n⊢ (" + w + " , nYX)";
+			txt += " ⊢ (n , nYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a12.png";
+			document.images["right1"].src = "accepted12.png";
 		}
 		function func19(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , YX)";
+			txt += "⊢ (ε , YX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a12.png";
+			document.images["right1"].src = "accepted12.png";
 		}
 		function func20(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , X)";
-			document.images["right1"].src = "a13.png";
+			txt += " ⊢ (ε , X)";
+			document.images["right1"].src = "accepted13.png";
 		}
 		function func21(){
 			i++;
-			txt += "\n⊢ (ε , ε)\nAccepted";
+			txt += " ⊢ (ε , ε)\nThe example is accepted..";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a13.png";
+			document.images["right1"].src = "accepted14.png";
 		}
 		function funcR1(){
 			i++;
-			txt += "P = (" + w + " , E)";
+			txt += "P = (n+nn-n , E)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a1.png";
+			document.images["right1"].src = "accepted1.png";
 		}
 		function funcR2(){
 			i++;
-			txt += "\n⊢ (" + w + " , TX)";
+			txt += " ⊢ (n+nn-n , TX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a2.png";
+			document.images["right1"].src = "accepted2.png";
 		}
 		function funcR3(){
 			i++;
-			txt += "\n⊢ (" + w + " , FYX)";
+			txt += " ⊢ (n+nn-n , FYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a3.png";
+			document.images["right1"].src = "accepted3.png";
 		}
 		function funcR4(){
 			i++;
-			txt += "\n⊢ (" + w + " , nYX)";
+			txt += " ⊢ (n+nn-n , nYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a4.png";
+			document.images["right1"].src = "accepted4.png";
 		}
 		function funcR5(){
 			i++;
 			//w = w.substr(1);
-			console.log(w)
-			txt += "\n⊢ (" + w + " , YX)";
+			txt += " ⊢ (+nn-n , YX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "a4.png";
+			document.images["right1"].src = "accepted4.png";
 		}
 		function funcR6(){
 			i++;
-			txt += "\n⊢ (" + w + " , X)";
+			txt += " ⊢ (+nn-n , X)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "r5.png";
+			document.images["right1"].src = "rejected5.png";
 		}
 		function funcR7(){
 			i++;
-			txt += "\n⊢ (" + w + " , +TX)";
+			txt += "\n⊢ (+nn-n , +TX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "r6.png";
+			document.images["right1"].src = "rejected6.png";
 		}
 		function funcR8(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , TX)";
+			txt += " ⊢ (nn-n , TX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "r6.png";
+			document.images["right1"].src = "rejected6.png";
 		}
 		function funcR9(){
 			i++;
-			txt += "\n⊢ (" + w + " , FYX)";
+			txt += " ⊢ (nn-n , FYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "r7.png";
+			document.images["right1"].src = "rejected7.png";
 		}
 		function funcR10(){
 			i++;
-			txt += "\n⊢ (" + w + " , nYX)";
+			txt += " ⊢ (nn-n , nYX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "r8.png";
+			document.images["right1"].src = "rejected8.png";
 		}
 		function funcR11(){
 			i++;
 			//w = w.substr(1);
-			txt += "\n⊢ (" + w + " , YX)";
+			txt += " ⊢ (n-n , YX)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "r8.png";
+			document.images["right1"].src = "rejected8.png";
 		}
 		function funcR12(){
 			i++;
-			txt += "\n⊢ (" + w + " , X)";
+			txt += " ⊢ (n-n , X)";
 			out.innerHTML = txt;
-			document.images["right1"].src = "r9.png";
+			document.images["right1"].src = "rejected9.png";
 		}
 		function funcR13(){
 			i++;
-			txt += "\n⊢ (" + w + " , X)";
+			txt += " ⊢ (n-n , X)";
 			txt += "\nThere is no X value that brings 'n'.\nSo the example is rejected!";
 			out.innerHTML = txt;
-			document.images["right1"].src = "r9.png";
+			document.images["right1"].src = "rejected9.png";
 		}
 	</script>
 </body>
